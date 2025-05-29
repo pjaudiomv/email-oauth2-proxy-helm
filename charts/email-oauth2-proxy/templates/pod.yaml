@@ -1,0 +1,29 @@
+{{- if .Values.setupPod.enabled }}
+apiVersion: v1
+kind: Pod
+metadata:
+  name: email-oauth-setup
+  namespace: {{ include "email-oauth2-proxy.namespace" . }}
+spec:
+  {{- with .Values.image.pullSecrets }}
+  imagePullSecrets:
+  {{- range . }}
+    - name: {{ .name }}
+  {{- end }}
+  {{- end }}
+  containers:
+    - name: oauth-setup
+      image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+      imagePullPolicy: {{ .Values.image.pullPolicy }}
+      command: ["/bin/bash"]
+      volumeMounts:
+        - name: cache-volume
+          mountPath: /app/cache
+      stdin: true
+      tty: true
+  volumes:
+    - name: cache-volume
+      persistentVolumeClaim:
+        claimName: email-cache-store
+  restartPolicy: OnFailure
+{{- end }}

@@ -1,0 +1,50 @@
+name: Build and Push Helm OCI
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Get short SHA
+        id: short_sha
+        run: echo "SHA_SHORT=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
+      - name: Get tag
+        id: tag
+        run: echo "TAG=${{ github.ref_type == 'tag' && github.ref_name || steps.short_sha.outputs.SHA_SHORT }}" >> $GITHUB_OUTPUT
+
+      - name: Helm Package
+        id: helm-package
+        run: helm package charts/email-oauth2-proxy --version ${{ steps.tag.outputs.TAG }}
+
+      - name: Helm Login to Github
+        id: helm-login-gh
+        run: echo ${{ secrets.GITHUB_TOKEN }} | helm registry login -u ${{ github.actor }} --password-stdin ghcr.io
+
+      - name: Helm Login to Docker Hub
+        id: helm-login
+        run: echo ${{ secrets.DOCKERHUB_TOKEN }} | helm registry login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin registry-1.docker.io
+        env:
+          HELM_EXPERIMENTAL_OCI: '1'
+
+      - name: Helm Push Github
+        id: helm-push-gh
+        run: |
+          helm push email-oauth2-proxy-${{ steps.tag.outputs.TAG }}.tgz oci://ghcr.io/${{ github.repository_owner }}
+
+      - name: Helm Push Docker Hub
+        id: helm-push
+        run: |
+          helm push email-oauth2-proxy-${{ steps.tag.outputs.TAG }}.tgz oci://registry-1.docker.io/pjaudiomv

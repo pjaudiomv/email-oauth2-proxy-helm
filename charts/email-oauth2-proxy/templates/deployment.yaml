@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "email-oauth2-proxy.fullname" . }}
+  namespace: {{ include "email-oauth2-proxy.namespace" . }}
+  labels:
+    {{- include "email-oauth2-proxy.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "email-oauth2-proxy.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "email-oauth2-proxy.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.image.pullSecrets }}
+      imagePullSecrets:
+      {{- range . }}
+        - name: {{ .name }}
+      {{- end }}
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args: {{ .Values.args }}
+          env:
+            {{- range $key, $value := .Values.config }}
+            - name: {{ $key | upper }}
+              value: {{ $value | quote }}
+            {{- end }}
+          ports:
+            - name: imaps
+              containerPort: {{ .Values.service.ports.imaps.targetPort }}
+              protocol: {{ .Values.service.ports.imaps.protocol }}
+            - name: pop3
+              containerPort: {{ .Values.service.ports.pop3.targetPort }}
+              protocol: {{ .Values.service.ports.pop3.protocol }}
+            - name: pop3s
+              containerPort: {{ .Values.service.ports.pop3s.targetPort }}
+              protocol: {{ .Values.service.ports.pop3s.protocol }}
+            - name: smtp
+              containerPort: {{ .Values.service.ports.smtp.targetPort }}
+              protocol: {{ .Values.service.ports.smtp.protocol }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          {{- if .Values.configMap.enabled }}
+          volumeMounts:
+            - name: emailproxy-config
+              mountPath: /app/{{ .Values.configMap.key }}
+              subPath: {{ .Values.configMap.key }}
+            - name: emailproxy-cache
+              mountPath: /app/cache
+          {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.configMap.enabled }}
+      volumes:
+        - name: emailproxy-config
+          configMap:
+            name: {{ .Values.configMap.name }}
+        - name: emailproxy-cache
+          persistentVolumeClaim:
+            claimName: email-cache-store
+      {{- end }}
