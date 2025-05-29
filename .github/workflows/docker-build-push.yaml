@@ -36,7 +36,6 @@ jobs:
           DOCKER_METADATA_ANNOTATIONS_LEVELS: index
         with:
           images: |
-            ghcr.io/pjaudiomv/email-oauth2-proxy
             pjaudiomv/email-oauth2-proxy
           tags: |
             type=semver,pattern={{version}}
