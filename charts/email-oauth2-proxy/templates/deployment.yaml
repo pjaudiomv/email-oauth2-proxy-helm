@@ -53,6 +53,8 @@ spec:
               subPath: {{ .Values.configMap.key }}
             - name: emailproxy-cache
               mountPath: /app/cache
+            - name: emailproxy-config-store
+              mountPath: /app/config
           {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
@@ -74,4 +76,7 @@ spec:
         - name: emailproxy-cache
           persistentVolumeClaim:
             claimName: email-cache-store
+        - name: emailproxy-config-store
+          persistentVolumeClaim:
+            claimName: email-config-store
       {{- end }}

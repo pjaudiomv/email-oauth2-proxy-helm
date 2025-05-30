@@ -8,3 +8,16 @@ spec:
   resources:
     requests:
       storage: 5Mi
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: email-config-store
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Mi
