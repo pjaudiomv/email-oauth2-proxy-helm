@@ -9,7 +9,8 @@ RUN mkdir /app/cache && mkdir /app/config && apt-get update && \
     && curl -o requirements-core.txt https://raw.githubusercontent.com/simonrob/email-oauth2-proxy/refs/heads/main/requirements-core.txt \
     && curl -o emailproxy.py https://raw.githubusercontent.com/simonrob/email-oauth2-proxy/refs/heads/main/emailproxy.py \
     && pip install --no-cache-dir -r requirements-core.txt \
-    && pip install --upgrade certifi
+    && pip install --upgrade certifi \
+    && pip install google-auth boto3
 
 COPY emailproxy.config.tpl .
 COPY docker-entrypoint.sh .

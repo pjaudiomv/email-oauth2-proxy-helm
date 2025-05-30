@@ -42,6 +42,13 @@ Create chart name and version as used by the chart label.
 {{- end }}
 
 {{/*
+ServiceAccount
+*/}}
+{{- define "email-oauth2-proxy.serviceAccountName" -}}
+{{- include "email-oauth2-proxy.fullname" .}}
+{{- end }}
+
+{{/*
 Common labels
 */}}
 {{- define "email-oauth2-proxy.labels" -}}

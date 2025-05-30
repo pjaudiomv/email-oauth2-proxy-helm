@@ -45,6 +45,9 @@ tolerations: []
 
 affinity: {}
 
+serviceAccount:
+  annotations: {}
+
 # Additional command line arguments
 args: []
 

@@ -11,6 +11,7 @@ spec:
     - name: {{ .name }}
   {{- end }}
   {{- end }}
+  serviceAccountName: {{ include "email-oauth2-proxy.serviceAccountName" .}}
   containers:
     - name: oauth-setup
       image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

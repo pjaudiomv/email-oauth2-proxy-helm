@@ -68,4 +68,4 @@ docker pull ghcr.io/pjaudiomv/email-oauth2-proxy:1.0.0
 ## Table of Contents
 
 - [Docker Usage](./docker/README.md) - Instructions for using the Docker image
-- [Helm Deployment](./charts/README.md) - Helm chart documentation
+  - [Helm Deployment](./charts/email-oauth2-proxy/README.md) - Helm chart documentation

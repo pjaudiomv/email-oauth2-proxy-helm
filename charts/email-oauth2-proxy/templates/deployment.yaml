@@ -6,7 +6,7 @@ metadata:
   labels:
     {{- include "email-oauth2-proxy.labels" . | nindent 4 }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: 1
   selector:
     matchLabels:
       {{- include "email-oauth2-proxy.selectorLabels" . | nindent 6 }}
@@ -21,6 +21,7 @@ spec:
         - name: {{ .name }}
       {{- end }}
       {{- end }}
+      serviceAccountName: {{ include "email-oauth2-proxy.serviceAccountName" .}}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
