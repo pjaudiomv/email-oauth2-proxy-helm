@@ -11,6 +11,8 @@ image:
   pullSecrets:
     - name: private-registry
 
+annotations: {}
+
 service:
   type: ClusterIP
   ports:
