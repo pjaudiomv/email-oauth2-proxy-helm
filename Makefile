@@ -18,3 +18,4 @@ docker: ## Builds Docker Image
 helm: ## Packages Helm Chart
 	helm package charts/email-oauth2-proxy --destination .cr-release-packages
 	helm repo index ./.cr-release-packages --url https://pjaudiomv.github.io/email-oauth2-proxy/
+	# cr upload --owner pjaudiomv --git-repo email-oauth2-proxy --packages-with-index --token ghp_token  --pages-branch main --push --skip-existing
