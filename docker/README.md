@@ -86,3 +86,28 @@ docker run \
   -e EMAILPROXY_SMTP_PORT=2525 \
   email-oauth2-proxy
 ```
+
+## Helpful Commands
+
+```bash
+docker exec -it  docker-utility-1 /bin/bash
+```
+
+- Start Proxy
+  ```bash
+  python3 emailproxy.py 
+      --no-gui --external-auth
+      --config-file /app/config/emailproxy.config
+      --cache-store /app/cache/credstore.config
+      --debug
+  ```
+
+- Test IMAP
+
+  In order to start the oauth flow with the proxy you must initiate a login command
+  ```bash
+  telnet 127.0.0.1 2993
+  A001 CAPABILITY
+  A002 LOGIN incoming@gmail.com password
+  A003 LIST "" "*"
+  ```
