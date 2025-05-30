@@ -1,0 +1,31 @@
+services:
+  proxy:
+    depends_on:
+      - utility
+    image: pjaudiomv/email-oauth2-proxy:1.0.0
+    restart: always
+    ports:
+      - 2993:2993
+    environment:
+      DEBUG: true
+      CACHE_STORE: /app/cache/credstore.config
+      CONFIG_FILE: /app/config/emailproxy.config
+    volumes:
+      - ./config/:/app/config
+      - ./cache/:/app/cache
+    networks:
+      - email-proxy-net
+  utility:
+    image: pjaudiomv/email-oauth2-proxy:1.0.0
+    entrypoint: [""]
+    command: ["sleep", "infinity"]
+    restart: always
+    volumes:
+      - ./cache/:/app/cache
+      - ./config/:/app/config
+    networks:
+      - email-proxy-net
+
+networks:
+  email-proxy-net:
+    driver: bridge
