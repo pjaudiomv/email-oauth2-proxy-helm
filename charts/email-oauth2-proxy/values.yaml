@@ -8,8 +8,6 @@ image:
   ## pullSecrets:
   ##   - name: myRegistryKeySecretName
   # -- pull secrets
-  pullSecrets:
-    - name: private-registry
 
 annotations: {}
 
