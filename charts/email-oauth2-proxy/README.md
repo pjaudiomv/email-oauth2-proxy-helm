@@ -6,7 +6,7 @@ This Helm chart deploys the Email OAuth2 Proxy, which provides OAuth2 authentica
 
 ### Add the Helm repository
 ```bash
-helm repo add pjaudiomv https://pjaudiomv.github.io/helm-charts
+helm repo add pjaudiomv https://pjaudiomv.github.io/email-oauth2-proxy
 helm repo update
 ```
 
