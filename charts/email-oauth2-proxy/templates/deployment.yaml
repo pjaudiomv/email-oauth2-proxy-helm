@@ -60,6 +60,10 @@ spec:
               mountPath: /app/cache
             - name: emailproxy-config-store
               mountPath: /app/config
+            {{- if and .Values.tls.cert .Values.tls.key }}
+            - name: certificate
+              mountPath: /app/cert
+            {{- end }}
           {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
@@ -78,6 +82,11 @@ spec:
         - name: emailproxy-config
           configMap:
             name: {{ .Values.configMap.name }}
+        {{- if and .Values.tls.cert .Values.tls.key }}
+        - name: certificate
+          secret:
+            secretName: certificate
+        {{- end }}
         - name: emailproxy-cache
           persistentVolumeClaim:
             claimName: email-cache-store

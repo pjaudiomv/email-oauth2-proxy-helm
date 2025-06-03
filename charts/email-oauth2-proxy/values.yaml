@@ -11,6 +11,10 @@ image:
 
 annotations: {}
 
+tls:
+  cert:
+  key:
+
 service:
   type: ClusterIP
   ports:
