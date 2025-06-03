@@ -9,8 +9,18 @@ image:
   ##   - name: myRegistryKeySecretName
   # -- pull secrets
 
-annotations: {}
+setupPod:
+  enabled: false
 
+# Optionally mount a custom emailproxy.config from a ConfigMap
+configMap:
+  enabled: false
+  name: emailproxy-config
+  key: emailproxy.config
+  data: |
+    [smtp] etc
+
+# useful if wanting to set local_key_path and local_certificate_path
 tls:
   cert:
   key:
@@ -35,6 +45,16 @@ service:
       targetPort: 1587
       protocol: TCP
 
+# Additional command line arguments
+args: []
+
+# can be useful for AWS IRSA for cache
+serviceAccount:
+  annotations: {}
+
+# K/V ENV Vars
+config: {}
+
 resources:
   limits:
     cpu: 500m
@@ -43,27 +63,10 @@ resources:
     cpu: 100m
     memory: 128Mi
 
+annotations: {}
+
 nodeSelector: {}
 
 tolerations: []
 
 affinity: {}
-
-serviceAccount:
-  annotations: {}
-
-# Additional command line arguments
-args: []
-
-config: {}
-
-setupPod:
-  enabled: false
-
-# Optionally mount a custom emailproxy.config from a ConfigMap
-configMap:
-  enabled: false
-  name: emailproxy-config
-  key: emailproxy.config
-  data: |
-    [smtp] etc
