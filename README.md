@@ -28,13 +28,13 @@ helm install email-oauth2-proxy oci://ghcr.io/pjaudiomv/email-oauth2-proxy --ver
 
 A standard Helm chart repo is also hosted at:
 
-* **Repo URL:** [https://pjaudiomv.github.io/email-oauth2-proxy](https://pjaudiomv.github.io/email-oauth2-proxy)
-* **Index file:** [index.yaml](https://pjaudiomv.github.io/email-oauth2-proxy/index.yaml)
+* **Repo URL:** [https://pjaudiomv.github.io/email-oauth2-proxy-helm](https://pjaudiomv.github.io/email-oauth2-proxy-helm)
+* **Index file:** [index.yaml](https://pjaudiomv.github.io/email-oauth2-proxy-helm/index.yaml)
 
 **Add the repo and install:**
 
 ```bash
-helm repo add email-oauth2-proxy https://pjaudiomv.github.io/email-oauth2-proxy
+helm repo add email-oauth2-proxy https://pjaudiomv.github.io/email-oauth2-proxy-helm
 helm repo update
 helm install email-oauth2-proxy email-oauth2-proxy --version 1.0.0
 ```

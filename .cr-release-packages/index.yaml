@@ -9,6 +9,6 @@ entries:
     name: email-oauth2-proxy
     type: application
     urls:
-      - https://github.com/pjaudiomv/email-oauth2-proxy/releases/download/email-oauth2-proxy-1.0.0/email-oauth2-proxy-1.0.0.tgz
+      - https://github.com/pjaudiomv/email-oauth2-proxy-helm/releases/download/email-oauth2-proxy-1.0.0/email-oauth2-proxy-1.0.0.tgz
     version: 1.0.0
 generated: "2025-06-03T10:07:31.309102-04:00"
