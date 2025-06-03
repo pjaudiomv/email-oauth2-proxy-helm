@@ -3,42 +3,12 @@ entries:
   email-oauth2-proxy:
   - apiVersion: v2
     appVersion: 1.1.0
-    created: "2025-05-30T11:46:05.7285-04:00"
+    created: "2025-06-03T08:09:16.338624-04:00"
     description: A Helm chart for deploying the Email OAuth2 Proxy
-    digest: 9f983dc944bb5f0f4de861c9056043c2f57e6000277b94357ad97f3fe2dc2da2
+    digest: 5b6eb3c8f1ca0096196203b29b6bfb4e26d85213c41b28988a52f4154f1e7cb5
     name: email-oauth2-proxy
     type: application
     urls:
-    - https://github.com/pjaudiomv/email-oauth2-proxy/releases/download/email-oauth2-proxy-1.3.0/email-oauth2-proxy-1.3.0.tgz
-    version: 1.3.0
-  - apiVersion: v2
-    appVersion: 1.1.0
-    created: "2025-05-30T11:46:05.727331-04:00"
-    description: A Helm chart for deploying the Email OAuth2 Proxy
-    digest: f8ebedb89e5ca0358cab9690a17ed88d5d5f252279c420a7fb64fc875c00eaf1
-    name: email-oauth2-proxy
-    type: application
-    urls:
-    - https://github.com/pjaudiomv/email-oauth2-proxy/releases/download/email-oauth2-proxy-1.2.0/email-oauth2-proxy-1.2.0.tgz
-    version: 1.2.0
-  - apiVersion: v2
-    appVersion: 1.0.0
-    created: "2025-05-30T11:46:05.725672-04:00"
-    description: A Helm chart for deploying the Email OAuth2 Proxy
-    digest: 65183aa6f080254d73435d0a5dd3986e64af8f9c9713fab5063c925ab3a08e7e
-    name: email-oauth2-proxy
-    type: application
-    urls:
-    - https://github.com/pjaudiomv/email-oauth2-proxy/releases/download/email-oauth2-proxy-1.1.0/email-oauth2-proxy-1.1.0.tgz
-    version: 1.1.0
-  - apiVersion: v2
-    appVersion: 1.0.0
-    created: "2025-05-30T11:46:05.724091-04:00"
-    description: A Helm chart for deploying the Email OAuth2 Proxy
-    digest: 4ff4eb9dcf43a0275f50839d762def0032173eee77c1a62dcf70efb6aaae1680
-    name: email-oauth2-proxy
-    type: application
-    urls:
-    - https://github.com/pjaudiomv/email-oauth2-proxy/releases/download/email-oauth2-proxy-1.0.0/email-oauth2-proxy-1.0.0.tgz
+      - https://github.com/pjaudiomv/email-oauth2-proxy/releases/download/email-oauth2-proxy-1.0.0/email-oauth2-proxy-1.0.0.tgz
     version: 1.0.0
-generated: "2025-05-30T11:46:05.721818-04:00"
+generated: "2025-06-03T08:09:16.336305-04:00"
