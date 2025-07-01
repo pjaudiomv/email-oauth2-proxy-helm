@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   email-oauth2-proxy:
   - apiVersion: v2
+    appVersion: 1.0.1
+    created: "2025-06-30T20:25:39.147138-04:00"
+    description: A Helm chart for deploying the Email OAuth2 Proxy
+    digest: c0006f9181e019e0f495a191e8a80eb5210a09eaa0e26cdd47178dd84bfaf3e6
+    name: email-oauth2-proxy
+    type: application
+    urls:
+      - email-oauth2-proxy-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
     appVersion: 1.0.0
     created: "2025-06-03T10:07:31.319793-04:00"
     description: A Helm chart for deploying the Email OAuth2 Proxy
